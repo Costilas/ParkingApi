@@ -1,0 +1,50 @@
+version: "3.7"
+
+volumes:
+  mysql-data: {}
+
+services:
+  nginx:
+    container_name: ${NAME}_nginx
+    build:
+      context: ./
+      dockerfile: docker/nginx/Dockerfile
+    volumes:
+      - ./app:/var/www/html/app
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    ports:
+      - "8080:80"
+
+  php-fpm:
+    container_name: ${NAME}_php-fpm
+    build:
+      context: ./
+      dockerfile: docker/php-fpm/Dockerfile
+    environment:
+      PHP_IDE_CONFIG: serverName=DockerServer
+    volumes:
+      - ./app:/var/www/html/app
+
+  mysql:
+    container_name: ${NAME}_db
+    image: mysql
+    volumes:
+      - ./docker/mysql-data:/var/lib/mysql
+    ports:
+      - "${MYSQL_PORT}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${NAME}
+
+  redis:
+    container_name: ${NAME}_redis
+    image: redis
+    ports:
+      - "${REDIS_PORT}:6379"
+
+  adminer:
+    image: adminer
+    ports:
+      - "8095:8080"
