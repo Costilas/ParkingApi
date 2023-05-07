@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Register user
 Route::post('auth/register', \App\Http\Controllers\Api\V1\Auth\RegisterController::class);
+//Login user
 Route::post('auth/login', \App\Http\Controllers\Api\V1\Auth\LoginController::class);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function () {
+    //Show user profile data
+    Route::get('/profile', [\App\Http\Controllers\Api\V1\Profile\ProfileController::class, 'show']);
+    //Change user email
+    Route::put('/profile', [\App\Http\Controllers\Api\V1\Profile\ProfileController::class, 'update']);
+    //Change user password
+    Route::put('/password', \App\Http\Controllers\Api\V1\Password\PasswordUpdateController::class);
+
+    //Logout
+    Route::post('/logout', \App\Http\Controllers\Api\V1\Auth\LogoutController::class);
 });

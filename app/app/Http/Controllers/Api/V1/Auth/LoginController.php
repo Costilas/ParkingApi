@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Api\V1\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\LoginUserRequest;
+use App\Http\Requests\Auth\LoginUserRequest;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -14,7 +15,7 @@ class LoginController extends Controller
     /**
      * @throws ValidationException
      */
-    public function __invoke(LoginUserRequest $request)
+    public function __invoke(LoginUserRequest $request): JsonResponse
     {
        $validatedData = $request->validated();
 

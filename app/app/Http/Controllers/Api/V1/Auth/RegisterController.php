@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\V1\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RegisterNewUserRequest;
+use App\Http\Requests\Auth\RegisterNewUserRequest;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
@@ -17,14 +17,12 @@ class RegisterController extends Controller
         $validatedData = $request->validated();
         $newUser = $this->registerUser($validatedData);
 
-
         $device = substr($request->userAgent() ?? '', 0, 255);
         $userTokenForDevice = $newUser->createToken($device)->plainTextToken;
-        $responseStatusCreated = Response::HTTP_CREATED;
 
         return response()->json([
             'access_token' => $userTokenForDevice,
-        ], $responseStatusCreated);
+        ], Response::HTTP_CREATED);
 
     }
 
