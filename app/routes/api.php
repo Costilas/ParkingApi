@@ -25,6 +25,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/profile', [\App\Http\Controllers\Api\V1\Profile\ProfileController::class, 'update']);
     //Change user password
     Route::put('/password', \App\Http\Controllers\Api\V1\Password\PasswordUpdateController::class);
+    //Vehicle managing (API Resource)
+    Route::apiResource('vehicles', \App\Http\Controllers\Api\V1\Vehicle\VehicleController::class);
 
     //Logout
     Route::post('/logout', \App\Http\Controllers\Api\V1\Auth\LogoutController::class);
