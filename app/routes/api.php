@@ -27,8 +27,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/profile', [\App\Http\Controllers\Api\V1\Profile\ProfileController::class, 'update']);
     //Change user password
     Route::put('/password', \App\Http\Controllers\Api\V1\Password\PasswordUpdateController::class);
-    //Vehicle managing (API Resource)
+    //Vehicle managing
     Route::apiResource('vehicles', \App\Http\Controllers\Api\V1\Vehicle\VehicleController::class);
+    //SHow single parking data
+    Route::get('parkings/{parking}', [\App\Http\Controllers\Api\V1\Parking\ParkingController::class, 'show']);
+    //Start parking
+    Route::post('parkings/start', [\App\Http\Controllers\Api\V1\Parking\ParkingController::class, 'start']);
+    //Stop parking
+    Route::put('parkings/{parking}', [\App\Http\Controllers\Api\V1\Parking\ParkingController::class, 'stop']);
 
     //Logout
     Route::post('/logout', \App\Http\Controllers\Api\V1\Auth\LogoutController::class);
