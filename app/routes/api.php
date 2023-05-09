@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::post('auth/register', \App\Http\Controllers\Api\V1\Auth\RegisterController::class);
 //Login user
 Route::post('auth/login', \App\Http\Controllers\Api\V1\Auth\LoginController::class);
+//List of available zones
+Route::get('zones', [\App\Http\Controllers\Api\V1\Zone\ZoneController::class, 'index']);
 
 Route::middleware('auth:sanctum')->group(function () {
     //Show user profile data
