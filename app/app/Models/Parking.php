@@ -16,7 +16,7 @@ class Parking extends Model
 
     protected $casts = [
         'start_time' => 'datetime',
-        'stop_time' => 'datetime',
+        'end_time' => 'datetime',
     ];
 
     public function zone()

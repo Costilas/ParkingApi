@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Parking\StartParkingRequest;
 use App\Http\Resources\Parking\ParkingResource;
 use App\Models\Parking;
+use App\Services\Price\ParkingPriceService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -36,11 +37,23 @@ class ParkingController extends Controller
 
     public function stop(Parking $parking)
     {
-        $parking->update([
-            'end_time' => now()
-        ]);
+        if($parking->end_time) {
 
-        return ParkingResource::make($parking);
+            $returnJson = response()->json(
+                ['errors' => ['general' => ['Parking already stopped!']]],
+                Response::HTTP_UNPROCESSABLE_ENTITY
+            );
+
+        } else {
+            $parking->update([
+                'end_time' => now(),
+                'total_price' => ParkingPriceService::calculatePrice($parking->zone_id, $parking->start_time),
+            ]);
+
+            $returnJson = ParkingResource::make($parking);
+        }
+
+        return $returnJson;
     }
 
     public function show(Parking $parking)
