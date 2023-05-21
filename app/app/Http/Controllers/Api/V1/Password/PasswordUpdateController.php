@@ -8,8 +8,15 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 
+/**
+ * @group Auth
+ */
 class PasswordUpdateController extends Controller
 {
+    /**
+     * @description Update password of authenticated user.
+     * @authenticated
+     */
     public function __invoke(UpdateUserPasswordRequest $updateUserPasswordRequest): JsonResponse
     {
         $validatedPasswordData = $updateUserPasswordRequest->validated();

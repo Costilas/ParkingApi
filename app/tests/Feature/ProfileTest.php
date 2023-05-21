@@ -121,6 +121,9 @@ class ProfileTest extends TestCase
             ])->assertJsonCount(2);
     }
 
+    /**
+     * @small
+     */
     public function testGuestCannotAccessProfile()
     {
         $response = $this->getJson(static::API_URL_PREFIX . 'profile');

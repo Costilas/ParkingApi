@@ -10,9 +10,13 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
+/**
+ * @group Auth
+*/
 class LoginController extends Controller
 {
     /**
+     * @description Log in user endpoint.
      * @throws ValidationException
      */
     public function __invoke(LoginUserRequest $request): JsonResponse

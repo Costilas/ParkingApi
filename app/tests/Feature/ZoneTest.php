@@ -18,6 +18,9 @@ class ZoneTest extends TestCase
         $this->seed(ZoneSeeder::class);
     }
 
+    /**
+     * @small
+     */
     public function testGuestHasAccessToAllParkingZones()
     {
         $response = $this->get(static::API_URL_PREFIX . 'zones');

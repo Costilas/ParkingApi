@@ -10,8 +10,14 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 
+/**
+ * @group Auth
+ */
 class RegisterController extends Controller
 {
+    /**
+     * @description Register new user endpoint.
+    */
     public function __invoke(RegisterNewUserRequest $request): JsonResponse
     {
         $validatedData = $request->validated();

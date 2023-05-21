@@ -8,13 +8,24 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
+/**
+ * @group Profile
+ */
 class ProfileController extends Controller
 {
+    /**
+     * @description Show profile data of authenticated user.
+     * @authenticated
+    */
     public function show(Request $request): JsonResponse
     {
         return response()->json($request->user()->only('name', 'email'));
     }
 
+    /**
+     * @description Update profile data of authenticated user.
+     * @authenticated
+     */
     public function update(UpdateUserProfileRequest $updateUserProfileRequest): JsonResponse
     {
         $validatedData = $updateUserProfileRequest->validated();

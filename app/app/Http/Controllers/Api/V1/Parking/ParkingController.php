@@ -10,8 +10,15 @@ use App\Services\Price\ParkingPriceService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
+/**
+ * @group Parking
+ */
 class ParkingController extends Controller
 {
+    /**
+     * @description Start parking new parking.
+     * @authenticated
+    */
     public function start(StartParkingRequest $request)
     {
         $parkingData = $request->validated();
@@ -35,6 +42,10 @@ class ParkingController extends Controller
         return $return;
     }
 
+    /**
+     * @description Stop parking.
+     * @authenticated
+     */
     public function stop(Parking $parking)
     {
         if($parking->end_time) {
@@ -56,6 +67,10 @@ class ParkingController extends Controller
         return $returnJson;
     }
 
+    /**
+     * @description Show particular parking data.
+     * @authenticated
+     */
     public function show(Parking $parking)
     {
         return ParkingResource::make($parking);

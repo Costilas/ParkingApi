@@ -22,6 +22,9 @@ class ParkingTest extends TestCase
         $this->seed(ZoneSeeder::class);
     }
 
+    /**
+     * @small
+    */
     public function testUserCanStartParking()
     {
         $user = User::factory()->create();
@@ -56,6 +59,9 @@ class ParkingTest extends TestCase
         $this->assertDatabaseCount('parkings', '1');
     }
 
+    /**
+     * @small
+     */
     public function testUserCanGetOngoingParkingWithCorrectPrice()
     {
         $user = User::factory()->create();
@@ -93,6 +99,9 @@ class ParkingTest extends TestCase
             ]);
     }
 
+    /**
+     * @small
+     */
     public function testUserCanStopParking()
     {
         $user = User::factory()->create();

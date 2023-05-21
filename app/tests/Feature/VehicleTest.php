@@ -12,6 +12,9 @@ class VehicleTest extends TestCase
 {
     use RefreshDatabase;
 
+    /**
+     * @small
+     */
     public function testUserCanGetTheirOwnVehicles()
     {
         $userOne = User::factory()->create();
@@ -34,6 +37,9 @@ class VehicleTest extends TestCase
 
     }
 
+    /**
+     * @small
+     */
     public function testUserCanCreateVehicle()
     {
         $user = User::factory()->create();
@@ -55,6 +61,9 @@ class VehicleTest extends TestCase
         ]);
     }
 
+    /**
+     * @small
+     */
     public function testUserCanUpdateTheirVehicle()
     {
         $user = User::factory()->create();
@@ -73,6 +82,9 @@ class VehicleTest extends TestCase
         ]);
     }
 
+    /**
+     * @small
+     */
     public function testUserCanDeleteTheirVehicle()
     {
         $user = User::factory()->create();

@@ -6,14 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Vehicle\StoreVehicleRequest;
 use App\Http\Resources\Vehicle\VehicleResource;
 use App\Models\Vehicle;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
+/**
+ * @group Vehicles
+ */
 class VehicleController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * @authenticated
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
@@ -23,7 +25,7 @@ class VehicleController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * @authenticated
      * @param  StoreVehicleRequest $request
      * @return VehicleResource
      */
@@ -36,7 +38,7 @@ class VehicleController extends Controller
 
     /**
      * Display the specified resource.
-     *
+     * @authenticated
      * @param  \App\Models\Vehicle  $vehicle
      * @return VehicleResource
      */
@@ -47,7 +49,7 @@ class VehicleController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
+     * @authenticated
      * @param  StoreVehicleRequest $request
      * @param  \App\Models\Vehicle  $vehicle
      * @return \Illuminate\Http\JsonResponse
@@ -61,7 +63,7 @@ class VehicleController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
+     * @authenticated
      * @param  \App\Models\Vehicle  $vehicle
      * @return \Illuminate\Http\Response
      */
